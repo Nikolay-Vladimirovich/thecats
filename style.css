@@ -5,4 +5,6 @@ header nav {
     font-size: 14px;
     background-color:  #08f;
     color: #fff;
+    display: flex;
 }
+header nav a { color: #fff; }
