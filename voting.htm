@@ -2,10 +2,15 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+    <link href="style.css" rel="stylesheet">
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
@@ -85,7 +90,7 @@
             methods: {
                 async getImage() {
                     try {
-                        axios.defaults.headers.common['x-api-key'] = "DEMO-API-KEY" // Replace this with your API Key, as it's set to defaults it will be used from now onwards
+                        axios.defaults.headers.common['x-api-key'] = "d6563ba1-1e8f-4a08-b218-1b8b3419d02d" // Replace this with your API Key, as it's set to defaults it will be used from now onwards
 
                         let response = await axios.get('https://api.thecatapi.com/v1/images/search', { params: { limit: 1, size: "full" } }) // Ask for 1 Image, at full resolution
 
