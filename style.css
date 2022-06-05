@@ -81,11 +81,9 @@ nav a.active {
     color: #fff;
     background-color: #1E88E5;
 }
-.cats_content.closed {
-    display: none;
-}
+
 .cats_content {
-    display: flex;
+    display: none;
     flex-wrap: wrap; 
     align-items: flex-start;
     justify-content: start;
@@ -94,6 +92,10 @@ nav a.active {
     padding: 0 41px;
     margin: 36px auto;
     width: 100%;
+    
+}
+.cats_content.opened {
+    display: flex;
 }
 .cat {    
     width: calc(20% - 16px);

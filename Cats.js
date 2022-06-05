@@ -6,25 +6,20 @@ class Cats {
     this.limit = 15;
     this.images = [];
     this.favourites = [];
-
     this.page = 1;
     this.pagination_count = 0;
     this.error_message = null;
-
-    this.initCat();
+    this.initCats();
   }
 
-
-  initCat() {
+  initCats() {
     axios.defaults.headers.common['x-api-key'] = "d6563ba1-1e8f-4a08-b218-1b8b3419d02d";
 
     if (!localStorage.getItem('catsLiked')) {
       localStorage.setItem('catsLiked', '[]')
     }
-
     this.renderSearchedList();
     this.renderFavourites();
-
   }
 
   renderSearchedList(){
@@ -44,72 +39,43 @@ class Cats {
   }
 
   buildFavourites(images, el) {
-
     document.querySelector(el).innerHTML = '';
-
     images.forEach((item) => {
-
       let cat = document.createElement("div");
       let image = new Image();
       let catToolbar = document.createElement("div");
       let btnLike = document.createElement("button");
-
       cat.classList.add("cat")
-
       cat.appendChild(image);
       cat.appendChild(catToolbar).classList.add("cat__toolbar");
-
-      
-
-      image.dataset.uniqueid = item.id;
-
-
-      image.src = item.image.url;
-
-      
+      image.dataset.uniqueid = item.id;      image.src = item.image.url;      
       catToolbar.appendChild(btnLike).classList.add("btn__like", "active");
-
       btnLike.addEventListener('click', () => this.deleteFavouriteImage(image.dataset.uniqueid))
-
       document.querySelector(el).appendChild(cat);
-
     })
-
   }
 
   buildSearchedList(images, el) {
-
-    document.querySelector(el).innerHTML = '';
-    
+    document.querySelector(el).innerHTML = '';    
     images.forEach((item) => {
-
       let cat = document.createElement("div");
       let image = new Image();
       let catToolbar = document.createElement("div");
       let btnLike = document.createElement("button");
-
       cat.classList.add("cat")
-
       cat.appendChild(image);
       image.src = item.url;
       image.dataset.uniqueid = item.id;
-
       cat.appendChild(catToolbar).classList.add("cat__toolbar");
       catToolbar.appendChild(btnLike).classList.add("btn__like");
-
       btnLike.addEventListener('click', () => this.favouriteImage(image.dataset.uniqueid))
-
-
       document.querySelector(el).appendChild(cat);
-
     });
-
   }
 
 
   async getFavourites() {
     try {
-
       let query_params = {
         limit: 100,
         order: 'DESC',
