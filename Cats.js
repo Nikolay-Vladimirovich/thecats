@@ -3,7 +3,7 @@ class Cats {
   elFavourite = ".cats_liked";
 
   constructor() {
-    this.limit = 6;
+    this.limit = 15;
     this.images = [];
     this.favourites = [];
 
