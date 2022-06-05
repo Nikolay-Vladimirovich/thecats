@@ -84,11 +84,6 @@ nav a.active {
 .cats_content.closed {
     display: none;
 }
-.cats_all {
-}
-.cats_liked {
-}
-
 .cats_content {
     display: flex;
     flex-wrap: wrap; 
