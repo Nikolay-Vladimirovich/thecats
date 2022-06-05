@@ -1,10 +1,163 @@
-header nav {
+/* begin - base styles
+---------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+*:before,
+*:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html {
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	font-size: 62.5%;
+}
+body {
+    padding: 0;
+	margin: 0;
+	font-family: 'Roboto2', sans-serif;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	/*-webkit-text-stroke: .1px;*/
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1;
+	color: #000;
+	background-color: #fff;
+}
+img {
+	border: none;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, time {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+*:focus {
+	outline: none;
+}
+/* end - base styles
+---------------------------------------------*/
+
+nav {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: flex-start;
+    justify-content: start;
     width: 100%;
     height: 50px;
+
+    padding: 0 62px;
+
     line-height: 50px;
-    font-size: 14px;
-    background-color:  #08f;
-    color: #fff;
-    display: flex;
+    background-color: #2196F3;
+    
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.24);
+    
 }
-header nav a { color: #fff; }
+nav a {
+    display: block;
+    height: 100%;
+
+    font-size: 14px;
+    color: #fff;
+    margin-right: 0;
+    
+    background-color: transparent;
+    letter-spacing: 0.25px;
+    text-decoration: none;
+    align-items: center;
+    padding: 0 23px;
+    
+}
+nav a.active {
+    color: #fff;
+    background-color: #1E88E5;
+}
+.cats_content.closed {
+    display: none;
+}
+.cats_all {
+}
+.cats_liked {
+}
+
+.cats_content {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+
+    padding: 0 41px;
+    margin: 36px auto;
+    width: 100%;
+}
+.cat {    
+    width: calc(20% - 16px);
+    min-width: 225px;
+    height: 225px;
+   
+    position: relative;
+    padding: 15px 15px 16px 16px;
+}
+
+.cat img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+
+.cat__toolbar {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 94px;
+}
+
+.btn__like {
+    position: absolute;
+    bottom: 28.3px;
+    right: 28px;
+    width: 40px;
+    height: 36.7px;
+    cursor: pointer;
+    border: none;
+    background: transparent url('images/heart.svg') no-repeat 0 0;
+}
+
+
+.cat:hover {
+    background-color: #fff;
+    box-shadow: 0px 6px 5px 0px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+
+.cat__toolbar {
+    transition: 0.2s opacity;
+    opacity: 0;
+}
+
+.cat:hover .cat__toolbar {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 41.15%, rgba(255, 255, 255, 0) 100%);
+    opacity: 1;
+}
+
+
+
+.btn__like:hover,
+.btn__like.active {
+    background-image: url('images/heart_a.svg');
+}

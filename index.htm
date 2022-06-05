@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="style.css" rel="stylesheet">
-
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Все котики</title>
 </head>
-
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="voting.htm">Все котики</a></li>
-                <li><a href="favorites.htm">Любимые котики</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <script src="app.js"></script>
+  <nav class="navigation">
+    
+    <a href="#" data-page="cats_all">Все котики</a>
+    <a href="#" data-page="cats_liked">Любимые котики</a>
+  </nav>
+
+  <div class="cats_content cats_all">
+  </div>
+
+  <div class="cats_content cats_liked">
+  </div>
+
+  <script src="Cats.js"></script>
+  
+  <script src="script.js"></script>
 </body>
-
 </html>
