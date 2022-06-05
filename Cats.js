@@ -40,16 +40,14 @@ class Cats {
     let cats = new Promise((resolve, reject) => {
       resolve(this.getFavourites());
     });
-    cats.then(() => this.buildFavourites(this.favourites, this.elFavourite))
+    cats.then(() => this.buildFavourites(JSON.parse(localStorage.getItem('catsLiked')), this.elFavourite))
   }
 
   buildFavourites(images, el) {
 
-    const likedCatsArr = JSON.parse(localStorage.getItem('catsLiked'));
-
     document.querySelector(el).innerHTML = '';
 
-    likedCatsArr.forEach((item, i, arr) => {
+    images.forEach((item) => {
 
       let cat = document.createElement("div");
       let image = new Image();
@@ -59,11 +57,16 @@ class Cats {
       cat.classList.add("cat")
 
       cat.appendChild(image);
-      image.src = item.image.url;
+      cat.appendChild(catToolbar).classList.add("cat__toolbar");
+
+      
 
       image.dataset.uniqueid = item.id;
 
-      cat.appendChild(catToolbar).classList.add("cat__toolbar");
+
+      image.src = item.image.url;
+
+      
       catToolbar.appendChild(btnLike).classList.add("btn__like", "active");
 
       btnLike.addEventListener('click', () => this.deleteFavouriteImage(image.dataset.uniqueid))
@@ -78,7 +81,7 @@ class Cats {
 
     document.querySelector(el).innerHTML = '';
     
-    images.forEach((item, i, arr) => {
+    images.forEach((item) => {
 
       let cat = document.createElement("div");
       let image = new Image();
@@ -103,6 +106,7 @@ class Cats {
 
   }
 
+
   async getFavourites() {
     try {
 
@@ -115,6 +119,7 @@ class Cats {
       this.favourites = response.data
 
       localStorage.setItem('catsLiked', JSON.stringify(this.favourites));
+      // Заносим в localStorage строку, полученную из массива с избранными котами
 
       this.pagination_count = response.headers['pagination-count'];
       this.clearError();
@@ -144,40 +149,25 @@ class Cats {
       }
       let response = await axios.post('https://api.thecatapi.com/v1/favourites', post_body)
       this.page = 1;
-
-      let l = new Promise((resolve, reject) => {
-        resolve(this.getFavourites());
-      });
-      l.then(() => this.buildFavourites(this.favourites, ".cats_liked"));
-      
+      this.renderFavourites(); // Отрисовка списка избранных котов после нажатия сердечка (добавить в избранное)
     } catch (error) {
       console.log(error)
       this.error_message = error.response.data.message
     }
   }
-  async deleteFavouriteImage(favourite_id)//this is not the image id
-  {
-
+  async deleteFavouriteImage(favourite_id) {
     try {
       let response = await axios.delete('https://api.thecatapi.com/v1/favourites/' + favourite_id)
       this.favourites = response.data
-
       this.page = 1;
-
-      let l = new Promise((resolve, reject) => {
-        resolve(this.getFavourites());
-      });
-      l.then(() => this.buildFavourites(this.favourites, ".cats_liked"));
-
+      this.renderFavourites(); // Отрисовка списка избранных котов после нажатия сердечка (удалить из избранного)
     } catch (err) {
       console.log(err)
     }
   }
 
-
   async clearError() {
     this.error_message = null;
   }
-
 
 }
