@@ -1,8 +1,7 @@
 window.addEventListener("load", function () {
-
- 
-
+  
   const cats = new Cats(); // Создаем экземпляр класса
+
   const menu = document.querySelector('.menu');
   const menuItems = menu.querySelectorAll('.menu__link');
   const catsContent = document.querySelectorAll('.cats_content');
@@ -20,7 +19,6 @@ window.addEventListener("load", function () {
       // Путем навешивания класса opened показываем нужный div с id, который определили ранее в переменной link
 
       cats.setCurrentContent(link); // Передаем в экземпляр объекта аттрибут href из пункта меню.
-
 		}
 
 	});
