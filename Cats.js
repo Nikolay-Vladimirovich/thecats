@@ -66,7 +66,7 @@ class Cats {
     );
     let b = window.innerHeight;
     let c = window.pageYOffset + 10; // "+ 10" - это временный фикс для мобильных устройств
-    //document.querySelector('.mcli').innerHTML = a + '  |||  ' + b + '  |||  ' + c  ;
+
     if (a <= (b + c)) {
       if (this.contentDimension.id == this.elSearchedList) {
         // Проверяем, если находимся в пункте "Все котики", то добавляем элементы по "скроллу" либо "ресайзу"
