@@ -1,28 +1,28 @@
 window.addEventListener("load", function () {
 
   const cats = new Cats(); // Создаем экземпляр класса
-  const menuItems = document.querySelectorAll('nav a');
-  let catsContent = document.querySelectorAll('.cats_content');
-  //catsContent.forEach((item) => { item.classList.add('closed') });
-  // Прячем блоки со списками котов, чтобы затем
-  // показать како-либо один в зависимости от нажатого пункта меню
-  
-  menuItems.forEach((item) => { // Перебираем все пункты меню
-    
-    item.addEventListener('click', function(e){
+  const menu = document.querySelector('.menu');
+  const menuItems = menu.querySelectorAll('.menu__link');
+  const catsContent = document.querySelectorAll('.cats_content');
 
-      e.preventDefault();
+  menu.addEventListener('click', function(e){
+		if(e.target.classList.contains('menu__link')){
+			e.preventDefault();
+			const link = e.target.hash; // По сути это id слоя, который будем показывать при клике на пункт меню
 
-      menuItems.forEach((item)=>(item.classList.remove('active'))); // Удаляем класс active у всех ссылок в меню
-      this.classList.add('active'); // Добавляем класс active к выбранному пункту
+      this.querySelectorAll('.menu__link').forEach((item)=> item.classList.remove('active')); // Удаляем класс active у всех ссылок в меню
+      e.target.classList.add('active');// Добавляем класс active к выбранному пункту меню
       
-      catsContent.forEach((item)=> item.classList.remove('opened'));
-      document.querySelector('.' + this.dataset.page).classList.add('opened')
+      catsContent.forEach((item)=> item.classList.remove('opened')); // Прячем все div с котами
+      document.querySelector(link).classList.add('opened');
+      // Путем навешивания класса opened показываем нужный div с id, который определили ранее в переменной link
 
+      cats.setCurrentContent(link); // Передаем в экземпляр объекта аттрибут href из пункта меню.
 
-    });
-    
-  });
-  menuItems[0].click(); // Генерируем клик по первому пункту меню
+		}
+
+	});
+
+  menuItems[0].click(); // Генерируем клик по пункту меню
 
 });
