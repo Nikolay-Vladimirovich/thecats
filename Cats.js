@@ -64,9 +64,10 @@ class Cats {
       document.body.offsetHeight, document.documentElement.offsetHeight,
       document.body.clientHeight, document.documentElement.clientHeight
     );
-    let b = window.innerHeight + window.pageYOffset;
-    //console.log(a + '  |||  ' + b);
-    if (a <= b) {
+    let b = window.innerHeight;
+    let c = window.pageYOffset + 10; // "+ 10" - это временный фикс для мобильных устройств
+    //document.querySelector('.mcli').innerHTML = a + '  |||  ' + b + '  |||  ' + c  ;
+    if (a <= (b + c)) {
       if (this.contentDimension.id == this.elSearchedList) {
         // Проверяем, если находимся в пункте "Все котики", то добавляем элементы по "скроллу" либо "ресайзу"
         // Если же находимся в "избранных котах", то ничег не добавляем по этим событиям.
@@ -107,7 +108,7 @@ class Cats {
     
     function onScroll(e) {
       ctx.getCurrentContent(ctx.currentContent).scrollTop = window.pageYOffset;
-      // Записываем в contentDimension.scrollTop позицию скролла, чтобы просмотр
+      // Записываем в contentDimension[текущего обекта].scrollTop позицию скролла, чтобы просмотр
       //продолжался с этой позиции при следующем открытии этого же пункта меню.
 
       //console.log(ctx.getCurrentContent(ctx.currentContent));

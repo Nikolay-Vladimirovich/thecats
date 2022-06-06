@@ -1,5 +1,7 @@
 window.addEventListener("load", function () {
 
+ 
+
   const cats = new Cats(); // Создаем экземпляр класса
   const menu = document.querySelector('.menu');
   const menuItems = menu.querySelectorAll('.menu__link');
